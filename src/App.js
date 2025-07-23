@@ -276,10 +276,10 @@ const CasteloBrancoTourism = () => {
             <div>
               <h4 className="font-semibold text-gray-800 mb-4">Quick Links</h4>
               <ul className="space-y-2 text-gray-600">
-                <li><a href="#" className="hover:text-green-600 transition-colors">Attractions</a></li>
-                <li><a href="#" className="hover:text-green-600 transition-colors">Events</a></li>
-                <li><a href="#" className="hover:text-green-600 transition-colors">Accommodations</a></li>
-                <li><a href="#" className="hover:text-green-600 transition-colors">Restaurants</a></li>
+                <li><a href="google.com" className="hover:text-green-600 transition-colors">Attractions</a></li>
+                <li><a href="google.com" className="hover:text-green-600 transition-colors">Events</a></li>
+                <li><a href="google.com" className="hover:text-green-600 transition-colors">Accommodations</a></li>
+                <li><a href="google.com" className="hover:text-green-600 transition-colors">Restaurants</a></li>
               </ul>
             </div>
             <div>
