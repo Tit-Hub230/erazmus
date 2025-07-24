@@ -27,29 +27,43 @@ const CasteloBrancoTourism = () => {
   }, []);
 
   const scrollToSection = (sectionId) => {
+    // Try to find the actual element first
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navHeight = 64; // Height of fixed navigation
+      const elementTop = element.offsetTop - navHeight;
+      window.scrollTo({
+        top: elementTop,
+        behavior: 'smooth'
+      });
+      return;
+    }
+
+    // Fallback to calculated positions if element not found
     let targetScrollY = 0;
+    const viewportHeight = window.innerHeight;
     
     switch (sectionId) {
       case 'home':
         targetScrollY = 0;
         break;
       case 'birds':
-        targetScrollY = window.innerHeight + (window.innerHeight * 0);
+        targetScrollY = viewportHeight + (viewportHeight * 0);
         break;
       case 'carnations-roses':
-        targetScrollY = window.innerHeight + (window.innerHeight * 1);
+        targetScrollY = viewportHeight + (viewportHeight * 1);
         break;
       case 'hearts':
-        targetScrollY = window.innerHeight + (window.innerHeight * 2);
+        targetScrollY = viewportHeight + (viewportHeight * 2);
         break;
       case 'pomegranates':
-        targetScrollY = window.innerHeight + (window.innerHeight * 3);
+        targetScrollY = viewportHeight + (viewportHeight * 3);
         break;
       case 'vines':
-        targetScrollY = window.innerHeight + (window.innerHeight * 4);
+        targetScrollY = viewportHeight + (viewportHeight * 4);
         break;
       case 'contact':
-        targetScrollY = window.innerHeight + (window.innerHeight * 5);
+        targetScrollY = viewportHeight + (viewportHeight * 5);
         break;
       default:
         return;
