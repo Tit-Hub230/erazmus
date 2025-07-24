@@ -14,7 +14,8 @@ const CasteloBrancoTourism = () => {
     const handleHashChange = () => {
       const hash = window.location.hash.substring(1);
       if (hash) {
-        scrollToSection(hash);
+        // Add a small delay to ensure DOM is ready
+        setTimeout(() => scrollToSection(hash), 100);
       }
     };
 
@@ -29,50 +30,45 @@ const CasteloBrancoTourism = () => {
   const scrollToSection = (sectionId) => {
     // Try to find the actual element first
     const element = document.getElementById(sectionId);
-    if (element) {
-      const navHeight = 64; // Height of fixed navigation
-      const elementTop = element.offsetTop - navHeight;
+      // Fallback to calculated positions if element not found
+      let targetScrollY = 0;
+      const viewportHeight = window.innerHeight;
+      const isMobile = window.innerWidth < 768;
+      
+      // Adjust section calculations for mobile vs desktop
+      const sectionHeight = isMobile ? viewportHeight : viewportHeight;
+      
+      switch (sectionId) {
+        case 'home':
+          targetScrollY = 0;
+          break;
+        case 'birds':
+          targetScrollY = viewportHeight;
+          break;
+        case 'carnations-roses':
+          targetScrollY = viewportHeight + sectionHeight;
+          break;
+        case 'hearts':
+          targetScrollY = viewportHeight + (sectionHeight * 2);
+          break;
+        case 'pomegranates':
+          targetScrollY = viewportHeight + (sectionHeight * 3);
+          break;
+        case 'vines':
+          targetScrollY = viewportHeight + (sectionHeight * 4);
+          break;
+        case 'contact':
+          // For contact, scroll to the footer which is after all content sections
+          targetScrollY = viewportHeight + (sectionHeight * 5);
+          break;
+        default:
+          return;
+      }
+      
       window.scrollTo({
-        top: elementTop,
+        top: targetScrollY,
         behavior: 'smooth'
       });
-      return;
-    }
-
-    // Fallback to calculated positions if element not found
-    let targetScrollY = 0;
-    const viewportHeight = window.innerHeight;
-    
-    switch (sectionId) {
-      case 'home':
-        targetScrollY = 0;
-        break;
-      case 'birds':
-        targetScrollY = viewportHeight + (viewportHeight * 0);
-        break;
-      case 'carnations-roses':
-        targetScrollY = viewportHeight + (viewportHeight * 1);
-        break;
-      case 'hearts':
-        targetScrollY = viewportHeight + (viewportHeight * 2);
-        break;
-      case 'pomegranates':
-        targetScrollY = viewportHeight + (viewportHeight * 3);
-        break;
-      case 'vines':
-        targetScrollY = viewportHeight + (viewportHeight * 4);
-        break;
-      case 'contact':
-        targetScrollY = viewportHeight + (viewportHeight * 5);
-        break;
-      default:
-        return;
-    }
-    
-    window.scrollTo({
-      top: targetScrollY,
-      behavior: 'smooth'
-    });
   };
 
   const getContentTransform = (index) => {
@@ -80,7 +76,7 @@ const CasteloBrancoTourism = () => {
     const sectionTop = sectionHeight + (index * sectionHeight); // Each section starts after the hero
     const sectionCenter = sectionTop + (sectionHeight / 2);
     const triggerStart = sectionCenter - 2000;
-    const triggerEnd = sectionCenter -500;
+    const triggerEnd = sectionCenter - 500;
     
     // Only animate when user is near this specific section
     const progress = Math.max(0, Math.min(1, (scrollY - triggerStart) / (triggerEnd - triggerStart)));
@@ -204,17 +200,7 @@ const CasteloBrancoTourism = () => {
             <div className="flex items-center">
               <h1 className="text-xl font-bold text-gray-800">Castelo Branco</h1>
             </div>
-            {/*
-            <div className="flex items-center space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-green-600 transition-colors">Home</a>
-              <a href="#ancient-roots" className="text-gray-700 hover:text-green-600 transition-colors">Ancient Roots</a>
-              <a href="#sacred-symbolism" className="text-gray-700 hover:text-green-600 transition-colors">Sacred Symbolism</a>
-              <a href="#seasonal-beauty" className="text-gray-700 hover:text-green-600 transition-colors">Seasonal Beauty</a>
-              <a href="#cultural-heritage" className="text-gray-700 hover:text-green-600 transition-colors">Cultural Heritage</a>
-              <a href="#visitor-experience" className="text-gray-700 hover:text-green-600 transition-colors">Visitor Experience</a>
-              <a href="#contact" className="text-gray-700 hover:text-green-600 transition-colors">Contact</a>
-            </div>
-            */}
+            {/* Navigation menu can be added here */}
           </div>
         </div>
       </nav>
@@ -253,7 +239,7 @@ const CasteloBrancoTourism = () => {
           const imageStyle = getImageTransform(index);
           
           return (
-            <section key={index} id={content.id} className="py-12 sm:py-16 lg:py-20 min-h-screen flex items-center relative overflow-hidden">
+            <section key={content.id} id={content.id} className="py-12 sm:py-16 lg:py-20 min-h-screen flex items-center relative overflow-hidden">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative">
                 
                 {/* Mobile Layout */}
