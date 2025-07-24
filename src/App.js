@@ -197,6 +197,11 @@ const CasteloBrancoTourism = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
+              <img 
+                src="/logo.png" 
+                alt="Castelo Branco Logo" 
+                className="h-8 w-8 object-contain"
+              />
               <h1 className="text-xl font-bold text-gray-800">Castelo Branco</h1>
             </div>
             {/* Navigation menu can be added here */}
