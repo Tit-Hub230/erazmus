@@ -29,7 +29,6 @@ const CasteloBrancoTourism = () => {
 
   const scrollToSection = (sectionId) => {
     // Try to find the actual element first
-    const element = document.getElementById(sectionId);
       // Fallback to calculated positions if element not found
       let targetScrollY = 0;
       const viewportHeight = window.innerHeight;
