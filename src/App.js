@@ -72,6 +72,18 @@ const CasteloBrancoTourism = () => {
     const progress = Math.max(0, Math.min(1, (scrollY - triggerStart) / (triggerEnd - triggerStart)));
     const isFromLeft = index % 2 === 0;
     
+    // Disable horizontal animation on mobile, use vertical instead
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      const translateY = -50 + (progress * 50);
+      return {
+        transform: `translateY(${translateY}px)`,
+        opacity: progress,
+        transition: 'none'
+      };
+    }
+    
     // Start completely off-screen and slide to final position slowly
     const startX = isFromLeft ? -1000 : 1000;
     const endX = 0;
@@ -96,6 +108,18 @@ const CasteloBrancoTourism = () => {
     const progress = Math.max(0, Math.min(1, (scrollY - triggerStart) / (triggerEnd - triggerStart)));
     const isFromRight = index % 2 === 0; // Opposite of content
     
+    // Disable horizontal animation on mobile, use vertical instead
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      const translateY = 50 + (progress * -50);
+      return {
+        transform: `translateY(${translateY}px)`,
+        opacity: progress,
+        transition: 'none'
+      };
+    }
+    
     // Start completely off-screen and slide to final position slowly
     const startX = isFromRight ? 1000 : -1000;
     const endX = 0;
@@ -111,34 +135,34 @@ const CasteloBrancoTourism = () => {
 
   const treeOfLifeContent = [
     {
-      id: 'ancient-roots',
-      title: "Ancient Roots",
-      description: "Discover the mystical Tree of Life, an ancient olive tree that has stood for over 800 years in the heart of Castelo Branco. This magnificent specimen represents the eternal connection between earth and sky, serving as a living monument to the region's rich agricultural heritage and spiritual significance.",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop"
+      id: 'birds',
+      title: "Birds",
+      description: "Birds are a prominent element in Castelo Branco Embroidery, perched amid the intricate foliage of the Tree of Life. They bring color and movement to the compositions and often reflect exotic or familiar species, perhaps inspired by domesticated poultry or local birds. The two-headed bird, particularly the double-headed eagle, carries heraldic and spiritual symbolism, referencing imperial authority and resurrection.",
+      image: "/tree/bird.png"
     },
     {
-      id: 'sacred-symbolism',
-      title: "Sacred Symbolism",
-      description: "The Tree of Life holds deep meaning for locals and visitors alike, symbolizing growth, strength, and renewal. Legend says that those who touch its ancient bark while making a wish will find their dreams fulfilled. The tree's massive canopy provides shelter and inspiration to all who gather beneath it.",
-      image: "https://images.unsplash.com/photo-1574263867128-ae32eaa8b262?w=600&h=400&fit=crop"
+      id: 'carnations-roses',
+      title: "Carnations and Roses",
+      description: "The carnation is a central motif in the embroidery, typically shown front-facing or in profile, with jagged petals. Symbolizing provocation, strength, and virility, it stands out as a resilient and erect flower. Although roses are not explicitly mentioned in the text, carnations serve a similar expressive and symbolic function within this tradition.",
+      image: "/tree/flower.png"
     },
     {
-      id: 'seasonal-beauty',
-      title: "Seasonal Beauty",
-      description: "Throughout the year, the Tree of Life transforms with the seasons, offering visitors a different experience each time they visit. In spring, delicate blossoms crown its branches, while autumn brings a spectacular display of golden leaves that shimmer in the Portuguese sunlight.",
-      image: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=600&h=400&fit=crop"
+      id: 'hearts',
+      title: "Hearts",
+      description: "The heart motif is deeply embedded in both religious and secular symbolism. In the embroidery, hearts appear on the chests of double-headed eagles or harmoniously integrated with other motifs. Traditionally, they represent love-secular and divine-charity, friendship, and moral integrity, bridging personal sentiment with cultural and spiritual meaning.",
+      image: "/tree/heart.png"
     },
     {
-      id: 'cultural-heritage',
-      title: "Cultural Heritage",
-      description: "The tree has witnessed centuries of Portuguese history, from medieval times to the present day. Local festivals and ceremonies often take place in its shadow, and it serves as a meeting point for the community, embodying the timeless spirit of Castelo Branco's people.",
-      image: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=600&h=400&fit=crop"
+      id: 'pomegranates',
+      title: "Pomegranates",
+      description: "Pomegranates, richly detailed in the embroidery, symbolize love and the promise of abundant life. Their presence aligns with the broader fertility themes in Castelo Branco Embroidery and reflects the symbolic richness of fruit in the tradition.",
+      image: "/tree/pomagranates.png"
     },
     {
-      id: 'visitor-experience',
-      title: "Visitor Experience",
-      description: "Come experience the Tree of Life for yourself - walk the peaceful paths that lead to this natural wonder, enjoy guided tours that reveal its secrets, and participate in traditional ceremonies held throughout the year. Photography enthusiasts will find endless inspiration in its majestic presence.",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=400&fit=crop"
+      id: 'vines',
+      title: "Vines",
+      description: "Although vines are not mentioned directly, the embroidery frequently includes undulating branches covered in foliage—elements visually and thematically akin to vines. These motifs enhance the organic flow of the composition and reinforce the themes of growth, vitality, and interconnected life.",
+      image: "/tree/vines.png"
     }
   ];
 
@@ -148,7 +172,7 @@ const CasteloBrancoTourism = () => {
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=1920&h=1080&fit=crop')`,
+          backgroundImage: `url('/irl-tree.jpeg')`,
           zIndex: -2
         }}
       />
@@ -166,6 +190,7 @@ const CasteloBrancoTourism = () => {
             <div className="flex items-center">
               <h1 className="text-xl font-bold text-gray-800">Castelo Branco</h1>
             </div>
+            {/*
             <div className="flex items-center space-x-8">
               <a href="#home" className="text-gray-700 hover:text-green-600 transition-colors">Home</a>
               <a href="#ancient-roots" className="text-gray-700 hover:text-green-600 transition-colors">Ancient Roots</a>
@@ -175,34 +200,32 @@ const CasteloBrancoTourism = () => {
               <a href="#visitor-experience" className="text-gray-700 hover:text-green-600 transition-colors">Visitor Experience</a>
               <a href="#contact" className="text-gray-700 hover:text-green-600 transition-colors">Contact</a>
             </div>
+            */}
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section id="home" className="relative bg-white min-h-screen flex items-center justify-center">
-        <div className="max-w-6xl mx-auto px-4 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                      <div className="space-y-6">
-            <h1 className="text-5xl font-bold text-gray-800 leading-tight">
-              Discover the Sacred
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="space-y-4 lg:space-y-6 text-center lg:text-left">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
+              Discover the
               <span className="text-green-600 block">Tree of Life</span>
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Experience the mystical power of Castelo Branco's most revered natural monument. This ancient olive tree, standing for over 800 years, represents the eternal connection between earth and sky, offering visitors a profound spiritual and cultural journey.
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
+              In Castelo Branco Embroidery, the Tree of Life symbolizes survival, renewal, eternity, and resurrection. When flanked by a man and a woman, it represents the continuity of life; when paired with a peacock, it takes on spiritual symbolism, evoking eternal life and resurrection. Artistically, it is depicted with a central, asymmetrical structure emerging from mounded branches teeming with foliage, flowers, fruits, and birds. This theme, often enriched with exotic and local motifs, reveals the embroiderers' creativity and imaginative interpretation of natural forms.
             </p>
-            <button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg">
-              Start Your Journey
-            </button>
           </div>
-          <div className="relative">
+          <div className="relative justify-self-center lg:justify-self-end">
             <img 
-              src="https://images.unsplash.com/photo-1574263867128-ae32eaa8b262?w=800&h=600&fit=crop"
+              src="/tree/tree.png"
               alt="Tree of Life - Castelo Branco"
-              className="rounded-2xl shadow-2xl w-full h-96 object-cover"
+              className="rounded-2xl shadow-2xl w-full max-w-sm lg:w-94 h-64 sm:h-80 lg:h-[32rem] object-cover"
             />
-            <div className="absolute -bottom-6 -right-6 bg-green-600 text-white p-4 rounded-lg shadow-lg">
-              <p className="font-semibold">800+ Years Old</p>
-              <p className="text-sm opacity-90">Sacred Monument</p>
+            <div className="absolute -bottom-6 sm:-bottom-8 lg:-bottom-12 -right-4 sm:-right-8 lg:-right-14 bg-green-600 text-white p-2 sm:p-3 lg:p-4 rounded-lg shadow-lg">
+              <p className="font-semibold text-sm sm:text-base">800+ Years Old</p>
+              <p className="text-xs sm:text-sm opacity-90">Sacred Monument</p>
             </div>
           </div>
         </div>
@@ -216,45 +239,73 @@ const CasteloBrancoTourism = () => {
           const imageStyle = getImageTransform(index);
           
           return (
-            <section key={index} id={content.id} className="py-20 min-h-screen flex items-center relative overflow-hidden">
-              <div className="max-w-7xl mx-auto px-4 w-full relative">
+            <section key={index} id={content.id} className="py-12 sm:py-16 lg:py-20 min-h-screen flex items-center relative overflow-hidden">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative">
                 
-                {/* Content Rectangle */}
-                <div 
-                  style={contentStyle}
-                  className={`relative w-3/5 bg-white rounded-2xl shadow-2xl z-20 ${
-                    isFromLeft 
-                      ? 'ml-5 mr-auto' // Left side positioning
-                      : 'ml-auto mr-5' // Right side positioning  
-                  }`}
-                >
-                  <div className={`p-8 ${isFromLeft ? 'pr-80' : 'pl-80'}`}>
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                      {content.title}
-                    </h2>
-                    <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                      {content.description}
-                    </p>
-                    <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
-                      Learn More
-                    </button>
+                {/* Mobile Layout */}
+                <div className="block md:hidden">
+                  <div 
+                    style={contentStyle}
+                    className="relative w-full bg-white rounded-2xl shadow-2xl mb-6"
+                  >
+                    <div className="p-6">
+                      <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                        {content.title}
+                      </h2>
+                      <p className="text-base text-gray-600 leading-relaxed mb-4">
+                        {content.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div 
+                    style={imageStyle}
+                    className="w-full max-w-sm mx-auto"
+                  >
+                    <img 
+                      src={content.image}
+                      alt={content.title}
+                      className="rounded-2xl shadow-2xl w-full h-64 object-cover"
+                    />
                   </div>
                 </div>
 
-                {/* Image */}
-                <div 
-                  style={imageStyle}
-                  className={`absolute top-1/2 transform -translate-y-1/2 w-80 h-80 z-30 ${
-                    isFromLeft 
-                      ? 'right-20' // Image on right when content is from left
-                      : 'left-20'  // Image on left when content is from right
-                  }`}
-                >
-                  <img 
-                    src={content.image}
-                    alt={content.title}
-                    className="rounded-2xl shadow-2xl w-full h-full object-cover"
-                  />
+                {/* Desktop Layout */}
+                <div className="hidden md:block">
+                  {/* Content Rectangle */}
+                  <div 
+                    style={contentStyle}
+                    className={`relative w-3/5 bg-white rounded-2xl shadow-2xl z-20 ${
+                      isFromLeft 
+                        ? 'ml-5 mr-auto' // Left side positioning
+                        : 'ml-auto mr-5' // Right side positioning  
+                    }`}
+                  >
+                    <div className={`p-6 lg:p-8 ${isFromLeft ? 'pr-60 lg:pr-80' : 'pl-60 lg:pl-80'}`}>
+                      <h2 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
+                        {content.title}
+                      </h2>
+                      <p className="text-base lg:text-lg text-gray-600 leading-relaxed mb-6">
+                        {content.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Image */}
+                  <div 
+                    style={imageStyle}
+                    className={`absolute top-1/2 transform -translate-y-1/2 w-64 lg:w-80 h-64 lg:h-80 z-30 ${
+                      isFromLeft 
+                        ? 'right-10 lg:right-20' // Image on right when content is from left
+                        : 'left-10 lg:left-20'  // Image on left when content is from right
+                    }`}
+                  >
+                    <img 
+                      src={content.image}
+                      alt={content.title}
+                      className="rounded-2xl shadow-2xl w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
                 
               </div>
@@ -265,17 +316,17 @@ const CasteloBrancoTourism = () => {
 
       {/* Footer */}
       <footer id="contact" className="relative z-10 bg-white border-t">
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4">Tree of Life Experience</h3>
-              <p className="text-gray-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <div className="sm:col-span-2 lg:col-span-1">
+              <h3 className="text-lg lg:text-xl font-bold text-gray-800 mb-3 lg:mb-4">Tree of Life Experience</h3>
+              <p className="text-sm lg:text-base text-gray-600">
                 Discover the sacred Tree of Life and its 800-year legacy in Castelo Branco.
               </p>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-600">
+              <h4 className="font-semibold text-gray-800 mb-3 lg:mb-4 text-sm lg:text-base">Quick Links</h4>
+              <ul className="space-y-1 lg:space-y-2 text-sm lg:text-base text-gray-600">
                 <li><a href="google.com" className="hover:text-green-600 transition-colors">Attractions</a></li>
                 <li><a href="google.com" className="hover:text-green-600 transition-colors">Events</a></li>
                 <li><a href="google.com" className="hover:text-green-600 transition-colors">Accommodations</a></li>
@@ -283,8 +334,8 @@ const CasteloBrancoTourism = () => {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-gray-800 mb-4">Contact Info</h4>
-              <div className="space-y-2 text-gray-600">
+              <h4 className="font-semibold text-gray-800 mb-3 lg:mb-4 text-sm lg:text-base">Contact Info</h4>
+              <div className="space-y-1 lg:space-y-2 text-sm lg:text-base text-gray-600">
                 <p>📍 Castelo Branco, Portugal</p>
                 <p>📞 +351 272 330 339</p>
                 <p>✉️ info@visit-castelobranco.pt</p>
