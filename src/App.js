@@ -223,8 +223,8 @@ const CasteloBrancoTourism = () => {
               className="rounded-2xl shadow-2xl w-full max-w-sm lg:w-94 h-64 sm:h-80 lg:h-[32rem] object-cover"
             />
             <div className="absolute -bottom-6 sm:-bottom-8 lg:-bottom-12 -right-4 sm:-right-8 lg:-right-14 bg-green-600 text-white p-2 sm:p-3 lg:p-4 rounded-lg shadow-lg">
-              <p className="font-semibold text-sm sm:text-base">800+ Years Old</p>
-              <p className="text-xs sm:text-sm opacity-90">Sacred Monument</p>
+              <p className="font-semibold text-sm sm:text-base">Tree of Life</p>
+              <p className="text-xs sm:text-sm opacity-90">Embroidery</p>
             </div>
           </div>
         </div>
