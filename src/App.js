@@ -33,19 +33,19 @@ const CasteloBrancoTourism = () => {
       case 'home':
         targetScrollY = 0;
         break;
-      case 'ancient-roots':
+      case 'birds':
         targetScrollY = window.innerHeight + (window.innerHeight * 0);
         break;
-      case 'sacred-symbolism':
+      case 'carnations-roses':
         targetScrollY = window.innerHeight + (window.innerHeight * 1);
         break;
-      case 'seasonal-beauty':
+      case 'hearts':
         targetScrollY = window.innerHeight + (window.innerHeight * 2);
         break;
-      case 'cultural-heritage':
+      case 'pomegranates':
         targetScrollY = window.innerHeight + (window.innerHeight * 3);
         break;
-      case 'visitor-experience':
+      case 'vines':
         targetScrollY = window.innerHeight + (window.innerHeight * 4);
         break;
       case 'contact':
